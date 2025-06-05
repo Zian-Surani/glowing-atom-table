@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ElementCard } from '../components/ElementCard';
 import { ElementModal } from '../components/ElementModal';
@@ -6,7 +5,6 @@ import { LiveBackground } from '../components/LiveBackground';
 import { Navigation } from '../components/Navigation';
 import { AboutModal } from '../components/AboutModal';
 import { DeveloperModal } from '../components/DeveloperModal';
-import { Atom3D } from '../components/Atom3D';
 import { getAllElements } from '../data/periodicTableData';
 import { Element } from '../types/Element';
 
@@ -38,11 +36,6 @@ const Index = () => {
       {showWelcome && (
         <div className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center z-50 animate-fade-in">
           <div className="text-center space-y-10 max-w-5xl px-6 relative">
-            {/* Enhanced 3D Atom Animation */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-40">
-              <Atom3D />
-            </div>
-            
             <div className="space-y-6 relative z-10">
               <div className="w-28 h-28 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 rounded-2xl mx-auto flex items-center justify-center animate-glow shadow-2xl">
                 <span className="text-4xl font-black text-white tech-font">AT</span>
@@ -209,7 +202,7 @@ const Index = () => {
 
       <DeveloperModal 
         isOpen={showDeveloper}
-        onClose={() => setShowDeveloper(true)}
+        onClose={() => setShowDeveloper(false)}
       />
     </div>
   );

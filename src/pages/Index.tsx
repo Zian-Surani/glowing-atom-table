@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import Spline from '@splinetool/react-spline';
 import { ElementCard } from '../components/ElementCard';
 import { ElementModal } from '../components/ElementModal';
 import { LiveBackground } from '../components/LiveBackground';
 import { Navigation } from '../components/Navigation';
 import { AboutModal } from '../components/AboutModal';
 import { DeveloperModal } from '../components/DeveloperModal';
+import { Atom3D } from '../components/Atom3D';
 import { getAllElements } from '../data/periodicTableData';
 import { Element } from '../types/Element';
 
@@ -38,11 +38,9 @@ const Index = () => {
       {showWelcome && (
         <div className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center z-50 animate-fade-in">
           <div className="text-center space-y-10 max-w-5xl px-6 relative">
-            {/* Enhanced Spline 3D Object */}
+            {/* Enhanced 3D Atom Animation */}
             <div className="absolute inset-0 flex items-center justify-center opacity-40">
-              <div className="w-[500px] h-[500px]">
-                <Spline scene="https://prod.spline.design/0235a0e3-3d0d-4dbf-9749-8844892ffa15/scene.splinecode" />
-              </div>
+              <Atom3D />
             </div>
             
             <div className="space-y-6 relative z-10">
@@ -211,7 +209,7 @@ const Index = () => {
 
       <DeveloperModal 
         isOpen={showDeveloper}
-        onClose={() => setShowDeveloper(false)}
+        onClose={() => setShowDeveloper(true)}
       />
     </div>
   );

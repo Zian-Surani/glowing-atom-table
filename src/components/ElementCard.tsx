@@ -46,7 +46,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
       className={`
         element-card relative h-12 md:h-16 cursor-pointer
         bg-gradient-to-br ${getCategoryColor(element.category)}
-        border border-gray-700 rounded-lg
+        border border-gray-700 rounded-lg m-1
         transition-all duration-300 ease-out
         hover:scale-110 hover:z-10
         hover:shadow-lg hover:${getCategoryGlow(element.category)}
@@ -64,20 +64,15 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
       `} />
       
       <div className="p-1 md:p-2 h-full flex flex-col justify-center items-center text-center">
-        <div className="text-xs md:text-sm font-bold leading-none">
+        <div className="text-xs md:text-sm font-bold leading-none mb-1">
           {element.atomicNumber}
         </div>
-        <div className="text-lg md:text-2xl font-bold leading-none">
+        <div className="text-lg md:text-2xl font-bold leading-none mb-1">
           {element.symbol}
         </div>
         <div className="text-xs leading-none truncate w-full">
           {element.name}
         </div>
-      </div>
-      
-      {/* Atomic mass */}
-      <div className="absolute bottom-0 right-0 text-xs opacity-70 p-1">
-        {element.atomicMass.toFixed(1)}
       </div>
     </div>
   );

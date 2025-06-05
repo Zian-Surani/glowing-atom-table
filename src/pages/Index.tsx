@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import Spline from '@splinetool/react-spline';
 import { ElementCard } from '../components/ElementCard';
 import { ElementModal } from '../components/ElementModal';
 import { LiveBackground } from '../components/LiveBackground';
@@ -36,8 +37,15 @@ const Index = () => {
       {/* Welcome Screen */}
       {showWelcome && (
         <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-fade-in">
-          <div className="text-center space-y-8 max-w-2xl px-4">
-            <div className="space-y-4">
+          <div className="text-center space-y-8 max-w-4xl px-4 relative">
+            {/* Spline 3D Object */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-30">
+              <div className="w-96 h-96">
+                <Spline scene="https://prod.spline.design/0235a0e3-3d0d-4dbf-9749-8844892ffa15/scene.splinecode" />
+              </div>
+            </div>
+            
+            <div className="space-y-4 relative z-10">
               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto flex items-center justify-center animate-pulse">
                 <span className="text-3xl font-bold text-white">AT</span>
               </div>
@@ -49,7 +57,7 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
               <button
                 onClick={handleGetStarted}
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold text-lg
@@ -86,7 +94,7 @@ const Index = () => {
         {/* Periodic Table */}
         <div className="px-4 pb-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-18 gap-1 md:gap-2 min-w-[1200px]">
+            <div className="grid grid-cols-18 gap-2 md:gap-3 min-w-[1200px]">
               {Array.from({ length: 18 }, (_, colIndex) => (
                 <div key={colIndex} className="col-span-1">
                   {Array.from({ length: 10 }, (_, rowIndex) => {
@@ -111,10 +119,10 @@ const Index = () => {
             </div>
             
             {/* Lanthanides and Actinides */}
-            <div className="mt-8 space-y-4">
+            <div className="mt-6 space-y-3">
               {/* Lanthanides */}
               <div className="flex justify-center">
-                <div className="grid grid-cols-15 gap-1 md:gap-2">
+                <div className="grid grid-cols-15 gap-2 md:gap-3">
                   {allElements
                     .filter(el => el.atomicNumber >= 57 && el.atomicNumber <= 71)
                     .map(element => (
@@ -129,7 +137,7 @@ const Index = () => {
               
               {/* Actinides */}
               <div className="flex justify-center">
-                <div className="grid grid-cols-15 gap-1 md:gap-2">
+                <div className="grid grid-cols-15 gap-2 md:gap-3">
                   {allElements
                     .filter(el => el.atomicNumber >= 89 && el.atomicNumber <= 103)
                     .map(element => (

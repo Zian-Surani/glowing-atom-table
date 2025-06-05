@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github } from 'lucide-react';
+import { Github, User, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface NavigationProps {
@@ -11,6 +11,10 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDeveloperClick }) => {
   const handleGithubClick = () => {
     window.open('https://github.com', '_blank');
+  };
+
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/in/zian-rajeshkumar-surani-125215195/', '_blank');
   };
 
   return (
@@ -29,13 +33,15 @@ export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDevelope
             onClick={onAboutClick}
             className="text-gray-300 hover:text-white hover:bg-gray-800"
           >
+            <Info className="w-4 h-4 mr-2" />
             About
           </Button>
           <Button
             variant="ghost"
-            onClick={onDeveloperClick}
+            onClick={handleLinkedInClick}
             className="text-gray-300 hover:text-white hover:bg-gray-800"
           >
+            <User className="w-4 h-4 mr-2" />
             Meet the Developer
           </Button>
           <Button

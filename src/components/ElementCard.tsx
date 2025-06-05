@@ -18,7 +18,8 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
       'reactive nonmetal': 'from-blue-500 to-blue-600',
       'noble gas': 'from-purple-500 to-purple-600',
       'lanthanide': 'from-pink-500 to-pink-600',
-      'actinide': 'from-indigo-500 to-indigo-600'
+      'actinide': 'from-indigo-500 to-indigo-600',
+      'unknown': 'from-gray-500 to-gray-600'
     };
     return colors[category as keyof typeof colors] || 'from-gray-500 to-gray-600';
   };
@@ -33,7 +34,8 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
       'reactive nonmetal': 'shadow-blue-500/50',
       'noble gas': 'shadow-purple-500/50',
       'lanthanide': 'shadow-pink-500/50',
-      'actinide': 'shadow-indigo-500/50'
+      'actinide': 'shadow-indigo-500/50',
+      'unknown': 'shadow-gray-500/50'
     };
     return glows[category as keyof typeof glows] || 'shadow-gray-500/50';
   };
@@ -42,7 +44,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
     <div
       onClick={onClick}
       className={`
-        relative h-12 md:h-16 cursor-pointer
+        element-card relative h-12 md:h-16 cursor-pointer
         bg-gradient-to-br ${getCategoryColor(element.category)}
         border border-gray-700 rounded-lg
         transition-all duration-300 ease-out

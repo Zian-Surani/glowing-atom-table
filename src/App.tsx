@@ -13,10 +13,10 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <CursorTrail />
-      <Toaster />
-      <Sonner />
       <BrowserRouter>
+        <CursorTrail />
+        <Toaster />
+        <Sonner />
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

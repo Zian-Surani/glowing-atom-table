@@ -1,4 +1,3 @@
-
 import { Element } from '../types/Element';
 
 export const periodicTableData: Element[] = [
@@ -17,9 +16,9 @@ export const periodicTableData: Element[] = [
     density: 0.00008988,
     discoveredBy: 'Henry Cavendish',
     yearDiscovered: 1766,
-    description: 'Hydrogen is the lightest and most abundant element in the universe. It is a colorless, odorless, and highly flammable gas.',
-    uses: ['Fuel for rockets and spacecraft', 'Production of ammonia for fertilizers', 'Petroleum refining', 'Food processing'],
-    occurrence: 'Most abundant element in the universe, found in water and organic compounds'
+    description: 'Hydrogen is the lightest and most abundant element in the universe. It is a colorless, odorless, and highly flammable gas that forms water when combined with oxygen. Hydrogen is the primary fuel of stars and plays a crucial role in nuclear fusion reactions.',
+    uses: ['Fuel for rockets and spacecraft', 'Production of ammonia for fertilizers', 'Petroleum refining and hydrogenation', 'Food processing and hydrogenated oils', 'Fuel cells for clean energy', 'Weather balloons'],
+    occurrence: 'Most abundant element in the universe (75% by mass), found in water, organic compounds, and interstellar space'
   },
   {
     atomicNumber: 2,
@@ -33,11 +32,11 @@ export const periodicTableData: Element[] = [
     meltingPoint: null,
     boilingPoint: -268.93,
     density: 0.0001785,
-    discoveredBy: 'Pierre Janssen',
+    discoveredBy: 'Pierre Janssen and Norman Lockyer',
     yearDiscovered: 1868,
-    description: 'Helium is a noble gas that is colorless, odorless, and chemically inert under normal conditions.',
-    uses: ['Filling balloons and airships', 'Cryogenic applications', 'Breathing gas for deep-sea diving', 'Cooling nuclear reactors'],
-    occurrence: 'Second most abundant element in the universe, found in natural gas deposits'
+    description: 'Helium is the second most abundant element in the universe and the second lightest. It is a noble gas that is chemically inert under normal conditions and remains liquid at the lowest temperatures.',
+    uses: ['Filling balloons and airships', 'Cryogenic applications in MRI machines', 'Breathing gas for deep-sea diving', 'Cooling nuclear reactors', 'Leak detection', 'Protective atmosphere for welding'],
+    occurrence: 'Second most abundant element in the universe, found in natural gas deposits and produced by radioactive decay'
   },
   // Period 2
   {

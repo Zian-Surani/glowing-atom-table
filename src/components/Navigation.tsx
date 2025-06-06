@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Github, User, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Github, Info, User, Code } from 'lucide-react';
 
 interface NavigationProps {
   onAboutClick: () => void;
@@ -9,52 +8,46 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDeveloperClick }) => {
-  const handleGithubClick = () => {
-    window.open('https://github.com', '_blank');
-  };
-
-  const handleLinkedInClick = () => {
-    window.open('https://www.linkedin.com/in/zian-rajeshkumar-surani-125215195/', '_blank');
-  };
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b-2 border-blue-500/30 shadow-lg">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 rounded-xl flex items-center justify-center shadow-lg">
-            <span className="text-white font-black text-lg tech-font">AT</span>
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-md border-b border-gray-700/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 rounded-lg flex items-center justify-center">
+              <span className="text-lg font-black text-white tech-font">AT</span>
+            </div>
+            <span className="text-white text-xl font-bold tech-font">The Atom Table</span>
           </div>
-          <span className="text-white font-black text-2xl tech-font bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            The Atom Table
-          </span>
-        </div>
-        
-        <div className="flex items-center space-x-3">
-          <Button
-            variant="ghost"
-            onClick={onAboutClick}
-            className="text-gray-300 hover:text-white hover:bg-blue-600/20 border border-transparent hover:border-blue-400/50 transition-all duration-300 modern-font font-semibold"
-          >
-            <Info className="w-5 h-5 mr-2" />
-            About
-          </Button>
-          
-          <Button
-            variant="ghost"
-            onClick={handleLinkedInClick}
-            className="text-gray-300 hover:text-white hover:bg-purple-600/20 border border-transparent hover:border-purple-400/50 transition-all duration-300 modern-font font-semibold"
-          >
-            <User className="w-5 h-5 mr-2" />
-            Developer
-          </Button>
-          
-          <Button
-            onClick={handleGithubClick}
-            className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white border-2 border-gray-500 hover:border-gray-400 transition-all duration-300 shadow-lg hover:shadow-xl modern-font font-bold px-6 py-3"
-          >
-            <Github className="w-5 h-5 mr-2" />
-            GitHub
-          </Button>
+
+          {/* Navigation Links */}
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={onAboutClick}
+              className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-lg transition-all duration-300 modern-font"
+            >
+              <Info className="w-4 h-4" />
+              <span>About</span>
+            </button>
+            
+            <button
+              onClick={onDeveloperClick}
+              className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-lg transition-all duration-300 modern-font"
+            >
+              <User className="w-4 h-4" />
+              <span>Developer</span>
+            </button>
+            
+            <a
+              href="https://github.com/Zian-Surani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-lg transition-all duration-300 modern-font"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
+          </div>
         </div>
       </div>
     </nav>

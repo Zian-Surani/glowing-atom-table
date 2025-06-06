@@ -50,7 +50,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDevelope
             >
               <Github className="w-4 h-4" />
               <span>GitHub</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

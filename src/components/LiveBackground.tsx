@@ -74,18 +74,17 @@ export const LiveBackground: React.FC = () => {
         ))}
       </div>
       
-      {/* Floating particles with glow */}
+      {/* Floating particles without glow */}
       <div className="absolute inset-0">
         {Array.from({ length: 30 }, (_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-500/30 rounded-full animate-float shadow-lg"
+            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-500/30 rounded-full animate-float"
             style={{
               left: `${10 + Math.random() * 80}%`,
               top: `${10 + Math.random() * 80}%`,
               animationDuration: `${4 + Math.random() * 6}s`,
-              animationDelay: `${Math.random() * 3}s`,
-              boxShadow: `0 0 10px ${i % 2 === 0 ? '#3b82f6' : '#8b5cf6'}`
+              animationDelay: `${Math.random() * 3}s`
             }}
           />
         ))}

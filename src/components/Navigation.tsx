@@ -14,8 +14,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDevelope
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 rounded-lg flex items-center justify-center">
-              <span className="text-lg font-black text-white tech-font">AT</span>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/ccc83364-6481-4b28-9be5-efdd8a876884.png" 
+                alt="The Atom Table Logo" 
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <span className="text-white text-xl font-bold tech-font">The Atom Table</span>
           </div>
@@ -46,7 +50,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onAboutClick, onDevelope
             >
               <Github className="w-4 h-4" />
               <span>GitHub</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>

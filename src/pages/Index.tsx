@@ -39,9 +39,13 @@ const Index = () => {
         <div className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center z-50">
           <div className="text-center space-y-6 sm:space-y-8 max-w-4xl px-4 sm:px-6">
             <div className="space-y-4">
-              {/* Animated logo */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 rounded-xl mx-auto flex items-center justify-center shadow-xl animate-pulse">
-                <span className="text-2xl sm:text-3xl font-black text-white tech-font">AT</span>
+              {/* Updated logo */}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/ccc83364-6481-4b28-9be5-efdd8a876884.png" 
+                  alt="The Atom Table Logo" 
+                  className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+                />
               </div>
               
               {/* Enhanced title with animations */}

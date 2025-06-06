@@ -123,6 +123,18 @@
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-meteor {
+    animation: meteor 8s linear infinite;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -147,10 +159,53 @@
 
   @keyframes glow {
     from {
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(147, 51, 234, 0.2);
     }
     to {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-10px) translateX(5px);
+    }
+    50% {
+      transform: translateY(-5px) translateX(-5px);
+    }
+    75% {
+      transform: translateY(-15px) translateX(3px);
+    }
+  }
+
+  @keyframes meteor {
+    0% {
+      transform: translateX(-200px) translateY(-200px) rotate(45deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 200px)) translateY(calc(100vh + 200px)) rotate(45deg);
+      opacity: 0;
     }
   }
 
@@ -160,5 +215,35 @@
 
   .grid-cols-15 {
     grid-template-columns: repeat(15, minmax(0, 1fr));
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .grid-cols-18 {
+      grid-template-columns: repeat(18, minmax(20px, 1fr));
+      gap: 1px;
+    }
+    
+    .grid-cols-15 {
+      grid-template-columns: repeat(15, minmax(18px, 1fr));
+      gap: 1px;
+    }
+    
+    .element-card {
+      min-width: 20px !important;
+      min-height: 20px !important;
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .grid-cols-18 {
+      grid-template-columns: repeat(18, minmax(30px, 1fr));
+    }
+    
+    .grid-cols-15 {
+      grid-template-columns: repeat(15, minmax(28px, 1fr));
+    }
   }
 }

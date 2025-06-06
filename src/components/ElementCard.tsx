@@ -47,25 +47,38 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
         element-card relative aspect-square w-full
         bg-gradient-to-br ${getCategoryColor(element.category)}
         border border-white/20 rounded-lg
-        transition-all duration-300 ease-out
-        hover:scale-105 hover:shadow-lg hover:border-white/40
-        hover:brightness-110 cursor-pointer
+        transition-all duration-500 ease-out
+        hover:scale-110 hover:shadow-2xl hover:border-white/60
+        hover:brightness-110 hover:animate-spin cursor-pointer
         backdrop-blur-sm ${getCategoryTextColor(element.category)}
-        group
+        group transform-gpu
+        active:scale-95 active:rotate-180
+        sm:hover:rotate-12 md:hover:rotate-6
       `}
+      style={{
+        minWidth: '40px',
+        minHeight: '40px'
+      }}
     >
-      {/* Subtle inner glow on hover */}
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Enhanced glow effect */}
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
       
-      <div className="relative p-2 h-full flex flex-col justify-center items-center text-center tech-font">
-        <div className="text-xs font-semibold leading-none mb-1 opacity-75">
+      {/* Spinning border effect */}
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-spin transition-opacity duration-300" />
+      
+      <div className="relative p-1 sm:p-2 h-full flex flex-col justify-center items-center text-center tech-font z-10">
+        <div className="text-xs sm:text-xs font-semibold leading-none mb-0.5 sm:mb-1 opacity-75">
           {element.atomicNumber}
         </div>
-        <div className="text-2xl font-bold leading-none mb-1">
+        <div className="text-lg sm:text-2xl font-bold leading-none mb-0.5 sm:mb-1 drop-shadow-sm">
           {element.symbol}
         </div>
-        <div className="text-xs leading-tight truncate w-full font-medium opacity-80">
+        <div className="text-xs leading-tight truncate w-full font-medium opacity-80 hidden sm:block">
           {element.name}
+        </div>
+        {/* Mobile: Show first 3 letters only */}
+        <div className="text-xs leading-tight truncate w-full font-medium opacity-80 sm:hidden">
+          {element.name.substring(0, 3)}
         </div>
       </div>
     </div>

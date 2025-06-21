@@ -115,22 +115,6 @@
     animation: scaleIn 0.3s ease-out;
   }
 
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-twinkle {
-    animation: twinkle 3s ease-in-out infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-meteor {
-    animation: meteor 8s linear infinite;
-  }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -150,49 +134,6 @@
     to {
       opacity: 1;
       transform: scale(1);
-    }
-  }
-
-  @keyframes twinkle {
-    0%, 100% {
-      opacity: 0.2;
-      transform: scale(0.8);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.2);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) translateX(0px);
-    }
-    25% {
-      transform: translateY(-10px) translateX(5px);
-    }
-    50% {
-      transform: translateY(-5px) translateX(-5px);
-    }
-    75% {
-      transform: translateY(-15px) translateX(3px);
-    }
-  }
-
-  @keyframes meteor {
-    0% {
-      transform: translateX(-200px) translateY(-200px) rotate(45deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(calc(100vw + 200px)) translateY(calc(100vh + 200px)) rotate(45deg);
-      opacity: 0;
     }
   }
 

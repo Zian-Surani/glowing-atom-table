@@ -79,7 +79,7 @@ export const LiveBackground: React.FC = () => {
         {Array.from({ length: 30 }, (_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-500/30 rounded-full animate-float"
+            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/20 to-purple-500/20 rounded-full animate-float"
             style={{
               left: `${10 + Math.random() * 80}%`,
               top: `${10 + Math.random() * 80}%`,

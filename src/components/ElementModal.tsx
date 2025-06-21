@@ -1,7 +1,7 @@
-
 import React from 'react';
-import { X, Thermometer, Scale, Calendar, User, Zap, Atom, Layers, Activity, AlertCircle, Globe, Beaker, Shield } from 'lucide-react';
+import { X, Thermometer, Scale, Calendar, User, Zap, Atom, Layers, Activity, AlertCircle, Globe, Beaker, Shield, Database, Loader } from 'lucide-react';
 import { Element } from '../types/Element';
+import { usePubChemData } from '../hooks/usePubChemData';
 
 interface ElementModalProps {
   element: Element;
@@ -9,6 +9,8 @@ interface ElementModalProps {
 }
 
 export const ElementModal: React.FC<ElementModalProps> = ({ element, onClose }) => {
+  const pubchemData = usePubChemData(element.name);
+
   const getCategoryColor = (category: string) => {
     const colors = {
       'alkali metal': 'from-pink-500 to-pink-600',
@@ -255,6 +257,65 @@ export const ElementModal: React.FC<ElementModalProps> = ({ element, onClose }) 
               </p>
             </div>
           </div>
+
+          {/* PubChem Data Section */}
+          {!pubchemData.loading && !pubchemData.error && (pubchemData.iupacName || pubchemData.molecularFormula || pubchemData.synonyms.length > 0) && (
+            <div className="bg-gradient-to-br from-indigo-900/40 to-indigo-800/20 rounded-xl p-6 mb-6 border border-indigo-500/30">
+              <div className="flex items-center space-x-3 mb-4">
+                <Database className="w-6 h-6 text-indigo-400" />
+                <h3 className="font-bold text-white text-xl tech-font">PubChem Database Information</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {pubchemData.iupacName && (
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-indigo-300 font-bold">IUPAC Name:</span>
+                    </p>
+                    <p className="text-white text-lg font-semibold">{pubchemData.iupacName}</p>
+                  </div>
+                )}
+                {pubchemData.molecularFormula && (
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-indigo-300 font-bold">Molecular Formula:</span>
+                    </p>
+                    <p className="text-white text-lg font-semibold tech-font">{pubchemData.molecularFormula}</p>
+                  </div>
+                )}
+                {pubchemData.molecularWeight && (
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-indigo-300 font-bold">Molecular Weight:</span>
+                    </p>
+                    <p className="text-white text-lg font-semibold">{pubchemData.molecularWeight.toFixed(2)} g/mol</p>
+                  </div>
+                )}
+                {pubchemData.synonyms.length > 0 && (
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-indigo-300 font-bold">Common Names:</span>
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {pubchemData.synonyms.slice(0, 3).map((synonym, index) => (
+                        <span key={index} className="px-2 py-1 bg-indigo-900/30 border border-indigo-500/30 rounded-full text-sm text-indigo-300">
+                          {synonym}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {pubchemData.loading && (
+            <div className="bg-gradient-to-br from-indigo-900/40 to-indigo-800/20 rounded-xl p-6 mb-6 border border-indigo-500/30">
+              <div className="flex items-center space-x-3">
+                <Loader className="w-6 h-6 text-indigo-400 animate-spin" />
+                <p className="text-indigo-300">Loading PubChem data...</p>
+              </div>
+            </div>
+          )}
 
           {/* Additional Properties */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

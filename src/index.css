@@ -80,6 +80,16 @@
     font-family: 'Inter', 'Exo 2', sans-serif;
   }
 
+  /* Light theme body */
+  body:not(.dark) {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  /* Dark theme body */
+  .dark body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
   button, a, [role="button"] {
     cursor: none !important;
   }
@@ -103,6 +113,30 @@
 
   .tech-font {
     font-family: 'Orbitron', monospace;
+  }
+
+  /* Light theme text colors */
+  :root:not(.dark) .text-white {
+    color: #1f2937;
+  }
+
+  :root:not(.dark) .text-gray-300 {
+    color: #6b7280;
+  }
+
+  :root:not(.dark) .text-gray-400 {
+    color: #9ca3af;
+  }
+
+  /* Light theme background adjustments */
+  :root:not(.dark) .bg-gradient-to-r.from-gray-900\/80 {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.9));
+    border-color: rgba(203, 213, 225, 0.5);
+  }
+
+  :root:not(.dark) .bg-gradient-to-br.from-gray-900 {
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc, #ffffff);
+    border-color: #e2e8f0;
   }
 }
 

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { X, Thermometer, Scale, Calendar, User, Zap, Atom, Layers, Activity, AlertCircle, Globe, Beaker, Shield, Database, Loader } from 'lucide-react';
 import { Element } from '../types/Element';
@@ -287,7 +288,7 @@ export const ElementModal: React.FC<ElementModalProps> = ({ element, onClose }) 
                     <p className="text-gray-300 mb-2 modern-font">
                       <span className="text-indigo-300 font-bold">Molecular Weight:</span>
                     </p>
-                    <p className="text-white text-lg font-semibold">{pubchemData.molecularWeight.toFixed(2)} g/mol</p>
+                    <p className="text-white text-lg font-semibold">{Number(pubchemData.molecularWeight).toFixed(2)} g/mol</p>
                   </div>
                 )}
                 {pubchemData.synonyms.length > 0 && (

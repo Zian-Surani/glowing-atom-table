@@ -1,8 +1,7 @@
-
 import React from 'react';
-import { X, Thermometer, Scale, Calendar, User, Zap, Atom, Layers, Activity, AlertCircle, Globe, Beaker, Shield, Database, Loader } from 'lucide-react';
+import { X, Thermometer, Scale, Calendar, User, Zap, Atom, Layers, Activity, AlertCircle, Globe, Beaker, Shield, Database, Loader, Microscope, Factory, Mountain, Cpu } from 'lucide-react';
 import { Element } from '../types/Element';
-import { usePubChemData } from '../hooks/usePubChemData';
+import { useElementData } from '../hooks/useElementData';
 
 interface ElementModalProps {
   element: Element;
@@ -10,7 +9,7 @@ interface ElementModalProps {
 }
 
 export const ElementModal: React.FC<ElementModalProps> = ({ element, onClose }) => {
-  const pubchemData = usePubChemData(element.name);
+  const elementData = useElementData(element.symbol, element.atomicNumber);
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -259,105 +258,140 @@ export const ElementModal: React.FC<ElementModalProps> = ({ element, onClose }) 
             </div>
           </div>
 
-          {/* PubChem Data Section */}
-          {!pubchemData.loading && !pubchemData.error && (pubchemData.iupacName || pubchemData.molecularFormula || pubchemData.synonyms.length > 0) && (
-            <div className="bg-gradient-to-br from-indigo-900/40 to-indigo-800/20 rounded-xl p-6 mb-6 border border-indigo-500/30">
-              <div className="flex items-center space-x-3 mb-4">
-                <Database className="w-6 h-6 text-indigo-400" />
-                <h3 className="font-bold text-white text-xl tech-font">PubChem Database Information</h3>
+          {/* Comprehensive Element Data Section */}
+          {!elementData.loading && !elementData.error && (
+            <>
+              {/* Physical Properties */}
+              <div className="bg-gradient-to-br from-cyan-900/40 to-cyan-800/20 rounded-xl p-6 mb-6 border border-cyan-500/30">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Microscope className="w-6 h-6 text-cyan-400" />
+                  <h3 className="font-bold text-white text-xl tech-font">Physical Properties</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-cyan-300 font-bold">Appearance:</span>
+                    </p>
+                    <p className="text-white text-lg font-semibold">{elementData.physicalProperties.appearance}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-300 mb-2 modern-font">
+                      <span className="text-cyan-300 font-bold">Crystal Structure:</span>
+                    </p>
+                    <p className="text-white text-lg font-semibold">{elementData.crystalStructure}</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {pubchemData.iupacName && (
-                  <div>
-                    <p className="text-gray-300 mb-2 modern-font">
-                      <span className="text-indigo-300 font-bold">IUPAC Name:</span>
-                    </p>
-                    <p className="text-white text-lg font-semibold">{pubchemData.iupacName}</p>
-                  </div>
-                )}
-                {pubchemData.molecularFormula && (
-                  <div>
-                    <p className="text-gray-300 mb-2 modern-font">
-                      <span className="text-indigo-300 font-bold">Molecular Formula:</span>
-                    </p>
-                    <p className="text-white text-lg font-semibold tech-font">{pubchemData.molecularFormula}</p>
-                  </div>
-                )}
-                {pubchemData.molecularWeight && (
-                  <div>
-                    <p className="text-gray-300 mb-2 modern-font">
-                      <span className="text-indigo-300 font-bold">Molecular Weight:</span>
-                    </p>
-                    <p className="text-white text-lg font-semibold">{Number(pubchemData.molecularWeight).toFixed(2)} g/mol</p>
-                  </div>
-                )}
-                {pubchemData.synonyms.length > 0 && (
-                  <div>
-                    <p className="text-gray-300 mb-2 modern-font">
-                      <span className="text-indigo-300 font-bold">Common Names:</span>
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {pubchemData.synonyms.slice(0, 3).map((synonym, index) => (
-                        <span key={index} className="px-2 py-1 bg-indigo-900/30 border border-indigo-500/30 rounded-full text-sm text-indigo-300">
-                          {synonym}
-                        </span>
-                      ))}
+
+              {/* Chemical Properties */}
+              <div className="bg-gradient-to-br from-emerald-900/40 to-emerald-800/20 rounded-xl p-6 mb-6 border border-emerald-500/30">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Beaker className="w-6 h-6 text-emerald-400" />
+                  <h3 className="font-bold text-white text-xl tech-font">Chemical Properties</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {getElectronegativity(element.atomicNumber) && (
+                    <div>
+                      <p className="text-gray-300 mb-2 modern-font">
+                        <span className="text-emerald-300 font-bold">Electronegativity:</span>
+                      </p>
+                      <p className="text-white text-lg font-semibold">{getElectronegativity(element.atomicNumber)} (Pauling)</p>
                     </div>
-                  </div>
-                )}
+                  )}
+                  {getAtomicRadius(element.atomicNumber) && (
+                    <div>
+                      <p className="text-gray-300 mb-2 modern-font">
+                        <span className="text-emerald-300 font-bold">Atomic Radius:</span>
+                      </p>
+                      <p className="text-white text-lg font-semibold">{getAtomicRadius(element.atomicNumber)} pm</p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+
+              {/* Isotopes Information */}
+              {elementData.isotopes && (
+                <div className="bg-gradient-to-br from-violet-900/40 to-violet-800/20 rounded-xl p-6 mb-6 border border-violet-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Atom className="w-6 h-6 text-violet-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Isotopes</h3>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">{elementData.isotopes}</p>
+                </div>
+              )}
+
+              {/* Biological Role */}
+              {elementData.biologicalRole && (
+                <div className="bg-gradient-to-br from-rose-900/40 to-rose-800/20 rounded-xl p-6 mb-6 border border-rose-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Activity className="w-6 h-6 text-rose-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Biological Role</h3>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">{elementData.biologicalRole}</p>
+                </div>
+              )}
+
+              {/* Industrial Uses */}
+              {elementData.industrialUses && (
+                <div className="bg-gradient-to-br from-amber-900/40 to-amber-800/20 rounded-xl p-6 mb-6 border border-amber-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Factory className="w-6 h-6 text-amber-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Industrial Applications</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {elementData.industrialUses.map((use, index) => (
+                      <div key={index} className="flex items-start space-x-3 p-3 bg-amber-900/20 rounded-lg">
+                        <div className="w-3 h-3 bg-amber-400 rounded-full mt-2 flex-shrink-0 animate-pulse" />
+                        <p className="text-gray-200 modern-font">{use}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Safety Information */}
+              {elementData.safetyInfo && (
+                <div className="bg-gradient-to-br from-red-900/40 to-red-800/20 rounded-xl p-6 mb-6 border border-red-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Shield className="w-6 h-6 text-red-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Safety Information</h3>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">{elementData.safetyInfo}</p>
+                </div>
+              )}
+
+              {/* Geological Occurrence */}
+              {elementData.geologicalOccurrence && (
+                <div className="bg-gradient-to-br from-stone-900/40 to-stone-800/20 rounded-xl p-6 mb-6 border border-stone-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Mountain className="w-6 h-6 text-stone-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Geological Occurrence</h3>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">{elementData.geologicalOccurrence}</p>
+                </div>
+              )}
+
+              {/* Discovery History */}
+              {elementData.discoveryHistory && (
+                <div className="bg-gradient-to-br from-indigo-900/40 to-indigo-800/20 rounded-xl p-6 mb-6 border border-indigo-500/30">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Calendar className="w-6 h-6 text-indigo-400" />
+                    <h3 className="font-bold text-white text-xl tech-font">Discovery History</h3>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">{elementData.discoveryHistory}</p>
+                </div>
+              )}
+            </>
           )}
 
-          {pubchemData.loading && (
+          {elementData.loading && (
             <div className="bg-gradient-to-br from-indigo-900/40 to-indigo-800/20 rounded-xl p-6 mb-6 border border-indigo-500/30">
               <div className="flex items-center space-x-3">
                 <Loader className="w-6 h-6 text-indigo-400 animate-spin" />
-                <p className="text-indigo-300">Loading PubChem data...</p>
+                <p className="text-indigo-300">Loading comprehensive element data...</p>
               </div>
             </div>
           )}
-
-          {/* Additional Properties */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            {getAtomicRadius(element.atomicNumber) && (
-              <div className="bg-gradient-to-br from-teal-900/50 to-teal-800/30 rounded-xl p-4 border border-teal-500/30">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Globe className="w-5 h-5 text-teal-400" />
-                  <h3 className="font-bold text-white text-sm">Atomic Radius</h3>
-                </div>
-                <p className="text-xl font-black text-teal-300 tech-font">
-                  {getAtomicRadius(element.atomicNumber)} pm
-                </p>
-              </div>
-            )}
-
-            {getElectronegativity(element.atomicNumber) && (
-              <div className="bg-gradient-to-br from-pink-900/50 to-pink-800/30 rounded-xl p-4 border border-pink-500/30">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Beaker className="w-5 h-5 text-pink-400" />
-                  <h3 className="font-bold text-white text-sm">Electronegativity</h3>
-                </div>
-                <p className="text-xl font-black text-pink-300 tech-font">
-                  {getElectronegativity(element.atomicNumber)} (Pauling)
-                </p>
-              </div>
-            )}
-
-            <div className="bg-gradient-to-br from-amber-900/50 to-amber-800/30 rounded-xl p-4 border border-amber-500/30">
-              <div className="flex items-center space-x-2 mb-2">
-                <Shield className="w-5 h-5 text-amber-400" />
-                <h3 className="font-bold text-white text-sm">Oxidation States</h3>
-              </div>
-              <p className="text-lg font-black text-amber-300 tech-font">
-                {element.category === 'alkali metal' ? '+1' :
-                 element.category === 'alkaline earth metal' ? '+2' :
-                 element.category === 'noble gas' ? '0' :
-                 element.category === 'reactive nonmetal' && element.column === 17 ? '-1, +1 to +7' :
-                 'Variable'}
-              </p>
-            </div>
-          </div>
 
           {/* Enhanced Electron Configuration */}
           <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/30 rounded-xl p-6 mb-6 border border-gray-600/50">

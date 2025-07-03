@@ -6,15 +6,18 @@ import { LiveBackground } from '../components/LiveBackground';
 import { Navigation } from '../components/Navigation';
 import { AboutModal } from '../components/AboutModal';
 import { DeveloperModal } from '../components/DeveloperModal';
+import { AtomicStructure } from '../components/AtomicStructure';
+import { ElementList } from '../components/ElementList';
 import { getAllElements } from '../data/periodicTableData';
 import { Element } from '../types/Element';
-import { Sparkles, Zap, Atom } from 'lucide-react';
+import { Sparkles, Zap, Atom, Grid, List } from 'lucide-react';
 
 const Index = () => {
   const [selectedElement, setSelectedElement] = useState<Element | null>(null);
   const [showAbout, setShowAbout] = useState(false);
   const [showDeveloper, setShowDeveloper] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const allElements = getAllElements();
 
@@ -112,8 +115,84 @@ const Index = () => {
           </p>
         </header>
 
-        {/* Optimized Periodic Table for Mobile */}
-        <div className="px-2 sm:px-4 pb-6 sm:pb-8">
+        {/* Mobile View Toggle - Only visible on mobile */}
+        <div className="md:hidden px-4 mb-6">
+          <div className="flex justify-center space-x-2">
+            <button
+              onClick={() => setViewMode('list')}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center space-x-2 ${
+                viewMode === 'list' 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
+              }`}
+            >
+              <List className="w-4 h-4" />
+              <span>List View</span>
+            </button>
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center space-x-2 ${
+                viewMode === 'grid' 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
+              }`}
+            >
+              <Grid className="w-4 h-4" />
+              <span>Grid View</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Atomic Structure and List View */}
+        <div className="md:hidden">
+          {viewMode === 'list' ? (
+            <div className="px-4">
+              <div className="mb-8">
+                <AtomicStructure />
+              </div>
+              <ElementList 
+                elements={allElements} 
+                onElementSelect={handleElementClick}
+              />
+            </div>
+          ) : (
+            <div className="px-2 pb-6">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-9 gap-1 bg-gray-900/20 p-2 rounded-xl border border-gray-700/30 backdrop-blur-sm overflow-x-auto gpu-accelerated">
+                  {Array.from({ length: 9 }, (_, colIndex) => (
+                    <div key={colIndex} className="space-y-1">
+                      {Array.from({ length: 7 }, (_, rowIndex) => {
+                        // Simplified grid for mobile - only show first 63 elements in 9x7 grid
+                        const atomicNumber = rowIndex * 9 + colIndex + 1;
+                        const element = allElements.find(el => el.atomicNumber === atomicNumber);
+                        
+                        if (!element || atomicNumber > 63) {
+                          return <div key={`${rowIndex}-${colIndex}`} className="aspect-square" />;
+                        }
+
+                        return (
+                          <ElementCard
+                            key={element.symbol}
+                            element={element}
+                            onClick={() => handleElementClick(element)}
+                          />
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-center">
+                  <p className="text-gray-400 text-sm">
+                    Showing first 63 elements. Switch to List View for all elements.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Full Periodic Table */}
+        <div className="hidden md:block px-2 sm:px-4 pb-6 sm:pb-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-18 gap-0.5 sm:gap-1 bg-gray-900/20 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-700/30 backdrop-blur-sm overflow-x-auto gpu-accelerated">
               {Array.from({ length: 18 }, (_, colIndex) => (

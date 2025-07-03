@@ -292,4 +292,8 @@
     backface-visibility: hidden;
     perspective: 1000px;
   }
+  
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
 }

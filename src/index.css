@@ -78,29 +78,70 @@
     cursor: none !important;
     overflow-x: hidden;
     font-family: 'Inter', 'Exo 2', sans-serif;
+    /* Mobile performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent zoom on mobile */
+    -webkit-text-size-adjust: 100%;
+    /* Hardware acceleration for smooth scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Dark gradient background */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #111827 75%, #0f172a 100%);
   }
 
-  /* Light theme body */
-  body:not(.dark) {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    body {
+      cursor: auto !important; /* Use default cursor on mobile */
+      /* Optimize for touch */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      /* Prevent bounce scrolling on iOS */
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: none;
+    }
+    
+    button, a, [role="button"] {
+      cursor: auto !important;
+      /* Better touch targets */
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    .element-card:hover {
+      cursor: auto !important;
+    }
   }
 
-  /* Dark theme body */
-  .dark body {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  }
+  /* Desktop optimizations */
+  @media (min-width: 769px) {
+    button, a, [role="button"] {
+      cursor: none !important;
+    }
 
-  button, a, [role="button"] {
-    cursor: none !important;
-  }
-
-  .element-card:hover {
-    cursor: none !important;
+    .element-card:hover {
+      cursor: none !important;
+    }
   }
 
   html {
     scroll-behavior: smooth;
     cursor: none !important;
+    /* Performance optimizations */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Mobile cursor override */
+  @media (max-width: 768px) {
+    html {
+      cursor: auto !important;
+    }
   }
 
   h1, h2, h3 {
@@ -141,12 +182,44 @@
 }
 
 @layer utilities {
+  /* Subtle page entrance animation */
+  .page-entrance {
+    animation: subtleFadeIn 0.8s ease-out;
+  }
+  
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out;
   }
 
   .animate-scale-in {
     animation: scaleIn 0.3s ease-out;
+  }
+  
+  /* Optimized mobile animations - reduced for performance */
+  .mobile-safe-animation {
+    animation: mobileSubtleFade 0.4s ease-out;
+  }
+
+  @keyframes subtleFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mobileSubtleFade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes fadeIn {
@@ -179,33 +252,70 @@
     grid-template-columns: repeat(15, minmax(0, 1fr));
   }
 
-  /* Mobile optimizations */
+  /* Enhanced mobile optimizations */
   @media (max-width: 640px) {
     .grid-cols-18 {
-      grid-template-columns: repeat(18, minmax(20px, 1fr));
+      grid-template-columns: repeat(18, minmax(22px, 1fr));
       gap: 1px;
     }
     
     .grid-cols-15 {
-      grid-template-columns: repeat(15, minmax(18px, 1fr));
+      grid-template-columns: repeat(15, minmax(20px, 1fr));
       gap: 1px;
     }
     
     .element-card {
-      min-width: 20px !important;
-      min-height: 20px !important;
-      font-size: 0.7rem;
+      min-width: 22px !important;
+      min-height: 22px !important;
+      font-size: 0.65rem;
+      /* Disable complex animations on mobile for performance */
+      transition: transform 0.15s ease-out, opacity 0.15s ease-out !important;
+    }
+    
+    /* Reduce animation complexity on mobile */
+    .element-card:hover, .element-card:active {
+      animation: none !important;
+      transform: scale(1.05) !important;
+    }
+    
+    /* Hide cursor trail on mobile */
+    .cursor-trail {
+      display: none !important;
     }
   }
 
   /* Tablet optimizations */
   @media (min-width: 641px) and (max-width: 1024px) {
     .grid-cols-18 {
-      grid-template-columns: repeat(18, minmax(30px, 1fr));
+      grid-template-columns: repeat(18, minmax(32px, 1fr));
     }
     
     .grid-cols-15 {
-      grid-template-columns: repeat(15, minmax(28px, 1fr));
+      grid-template-columns: repeat(15, minmax(30px, 1fr));
     }
+    
+    .element-card {
+      /* Simplified animations for tablet */
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+  }
+  
+  /* Desktop optimizations */
+  @media (min-width: 1025px) {
+    .element-card {
+      /* Full animations only on desktop */
+      transition: all 0.3s ease-out;
+    }
+  }
+  
+  /* Performance optimizations for all devices */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }

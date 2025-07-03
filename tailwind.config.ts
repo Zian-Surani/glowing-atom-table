@@ -105,13 +105,35 @@ export default {
 						transform: 'scale(1)',
 						opacity: '1'
 					}
+				},
+				'subtle-fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(8px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'mobile-fade': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(4px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
-				'scale-in': 'scale-in 0.2s ease-out'
+				'scale-in': 'scale-in 0.2s ease-out',
+				'subtle-fade-in': 'subtle-fade-in 0.8s ease-out',
+				'mobile-fade': 'mobile-fade 0.4s ease-out'
 			},
 			gridTemplateColumns: {
 				'18': 'repeat(18, minmax(0, 1fr))',

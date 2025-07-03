@@ -1,18 +1,38 @@
-# Welcome to your Lovable project
+# ✨ Glowing Atom Table
 
-## Project info
+An interactive, visually engaging periodic table web application built to enhance learning and exploration of chemical elements.
 
-**URL**: https://lovable.dev/projects/61d19e48-825b-4565-8dd3-0154e52d2884
+## 🔬 Overview
+
+**Glowing Atom Table** is designed to help students, educators, and enthusiasts explore the periodic table in an intuitive and modern format. With vibrant visuals and real-time interactivity, it simplifies the understanding of atomic structure, properties, and element relationships.
+
+## 🧪 Features
+
+- 🧱 **Interactive Periodic Table** – Clickable elements with detailed pop-ups.
+- 🌈 **Glowing UI Effects** – Clean and modern design with animated hover effects.
+- 📚 **Element Info Cards** – Display key properties like atomic number, mass, category, and symbol.
+- 🎯 **Search Functionality** – Quickly locate elements by name or symbol.
+- 📱 **Responsive Layout** – Works seamlessly across devices and screen sizes.
+
+## 🛠 Tech Stack
+
+- **Frontend:** HTML5, CSS3, JavaScript  
+- **Animation/UI:** CSS Glow Effects, Grid Layout  
+- **Optional Enhancements:** (Planned) React.js, API Integration for real-time data
+
+## 📦 Getting Started
+
+Clone the repository and open the `index.html` in any browser:
+
+```bash
+git clone https://github.com/Zian-Surani/glowing-atom-table.git
+cd glowing-atom-table
+
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/61d19e48-825b-4565-8dd3-0154e52d2884) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -60,11 +80,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/61d19e48-825b-4565-8dd3-0154e52d2884) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
 

@@ -75,7 +75,6 @@
 
   body {
     @apply bg-background text-foreground;
-    cursor: none !important;
     overflow-x: hidden;
     font-family: 'Inter', 'Exo 2', sans-serif;
     /* Mobile performance optimizations */
@@ -94,7 +93,6 @@
   /* Mobile-specific optimizations */
   @media (max-width: 768px) {
     body {
-      cursor: auto !important; /* Use default cursor on mobile */
       /* Optimize for touch */
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -107,41 +105,17 @@
     }
     
     button, a, [role="button"] {
-      cursor: auto !important;
       /* Better touch targets */
       min-height: 44px;
       min-width: 44px;
-    }
-    
-    .element-card:hover {
-      cursor: auto !important;
-    }
-  }
-
-  /* Desktop optimizations */
-  @media (min-width: 769px) {
-    button, a, [role="button"] {
-      cursor: none !important;
-    }
-
-    .element-card:hover {
-      cursor: none !important;
     }
   }
 
   html {
     scroll-behavior: smooth;
-    cursor: none !important;
     /* Performance optimizations */
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Mobile cursor override */
-  @media (max-width: 768px) {
-    html {
-      cursor: auto !important;
-    }
   }
 
   h1, h2, h3 {

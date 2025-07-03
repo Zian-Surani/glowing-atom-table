@@ -50,7 +50,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({ element, onClick }) =>
         will-change-transform gpu-accelerated
         transition-transform duration-200 ease-out
         hover:scale-105 hover:shadow-lg hover:border-white/40
-        hover:brightness-105 cursor-pointer
+        cursor-pointer
         backdrop-blur-sm ${getCategoryTextColor(element.category)}
         group active:scale-95
         sm:hover:scale-110 sm:hover:shadow-xl

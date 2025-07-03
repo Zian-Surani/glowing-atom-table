@@ -202,7 +202,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '-1 (in metal hydrides), +1 (most common)',
       electronegativity: '2.20 (Pauling scale)',
       atomicRadius: '53 pm (van der Waals radius)',
-      conductivity: 'Poor electrical conductor as gas; good thermal conductor'
+      conductivity: 'Poor electrical conductor as gas; good thermal conductor',
+      hardness: 'N/A (gas at standard conditions)',
+      ionizationEnergy: '13.598 eV'
     },
     'He': {
       discoveryHistory: `Helium was first detected in the solar spectrum by Pierre Janssen during a solar eclipse in 1868. William Ramsay isolated it on Earth in 1895 from uranium ore. Recent data (${timestamp}) shows it's the second most abundant element in the universe.`,
@@ -217,7 +219,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '0 (chemically inert)',
       electronegativity: 'No stable compounds known',
       atomicRadius: '31 pm (van der Waals radius)',
-      conductivity: 'Excellent thermal conductor at low temperatures'
+      conductivity: 'Excellent thermal conductor at low temperatures',
+      hardness: 'N/A (gas at standard conditions)',
+      ionizationEnergy: '24.587 eV'
     },
     'Li': {
       discoveryHistory: `Lithium was discovered by Johan August Arfwedson in 1817 in the mineral petalite. The name derives from Greek "lithos" meaning stone. Current applications (${timestamp}) focus heavily on battery technology for electric vehicles.`,
@@ -232,7 +236,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '+1 (loses one electron readily)',
       electronegativity: '0.98 (most electropositive metal)',
       atomicRadius: '167 pm',
-      conductivity: 'Good electrical and thermal conductor'
+      conductivity: 'Good electrical and thermal conductor',
+      hardness: '0.6 (Mohs scale) - very soft metal',
+      ionizationEnergy: '5.392 eV'
     },
     'C': {
       discoveryHistory: `Carbon has been known since ancient times in forms like charcoal and soot. Diamond and graphite were recognized as carbon allotropes in the 18th century. Modern research (${timestamp}) continues to discover new carbon allotropes like graphene and nanotubes.`,
@@ -247,7 +253,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '-4 to +4 (most versatile bonding)',
       electronegativity: '2.55 (forms covalent bonds readily)',
       atomicRadius: '67 pm',
-      conductivity: 'Varies: Diamond (insulator), Graphite (conductor), Graphene (excellent conductor)'
+      conductivity: 'Varies: Diamond (insulator), Graphite (conductor), Graphene (excellent conductor)',
+      hardness: 'Diamond: 10 (Mohs scale) - hardest natural material; Graphite: 1-2 (Mohs scale)',
+      ionizationEnergy: '11.260 eV'
     },
     'O': {
       discoveryHistory: `Oxygen was discovered independently by Carl Wilhelm Scheele (1772) and Joseph Priestley (1774). Antoine Lavoisier named it "oxygen" meaning "acid former". Current research (${timestamp}) focuses on oxygen's role in atmospheric chemistry and life sciences.`,
@@ -262,7 +270,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '-2 (most common), -1, 0, +1, +2',
       electronegativity: '3.44 (highly electronegative)',
       atomicRadius: '48 pm',
-      conductivity: 'Poor electrical conductor; moderate thermal conductor'
+      conductivity: 'Poor electrical conductor; moderate thermal conductor',
+      hardness: 'N/A (gas at standard conditions)',
+      ionizationEnergy: '13.618 eV'
     },
     'Fe': {
       discoveryHistory: `Iron has been known and used since ancient times (Iron Age ~1200 BCE). Modern understanding of iron metallurgy developed during the Industrial Revolution. Current research (${timestamp}) focuses on advanced steel alloys and magnetic properties.`,
@@ -277,7 +287,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '+2 (ferrous), +3 (ferric), 0, +4, +6',
       electronegativity: '1.83',
       atomicRadius: '156 pm',
-      conductivity: 'Good electrical and thermal conductor'
+      conductivity: 'Good electrical and thermal conductor',
+      hardness: '4-5 (Mohs scale) - moderately hard metal',
+      ionizationEnergy: '7.902 eV'
     },
     'Au': {
       discoveryHistory: `Gold has been known since prehistoric times and was one of the first metals worked by humans. The symbol Au comes from Latin "aurum". Modern applications (${timestamp}) include nanotechnology and advanced electronics.`,
@@ -292,7 +304,9 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       oxidationStates: '+1, +3 (most common), -1',
       electronegativity: '2.54',
       atomicRadius: '174 pm',
-      conductivity: 'Excellent electrical conductor; good thermal conductor'
+      conductivity: 'Excellent electrical conductor; good thermal conductor',
+      hardness: '2.5-3 (Mohs scale) - relatively soft metal',
+      ionizationEnergy: '9.226 eV'
     }
   };
 
@@ -313,7 +327,8 @@ const generateComprehensiveData = (symbol: string, atomicNumber: number, apiData
       electronegativity: 'Electronegativity values vary by scale and experimental determination',
       atomicRadius: 'Atomic radius varies by measurement method and chemical environment',
       conductivity: 'Electrical and thermal conductivity depend on purity and temperature',
-      hardness: 'Hardness varies by crystal structure and testing method'
+      hardness: 'Hardness varies by crystal structure and testing method',
+      ionizationEnergy: 'Ionization energy varies by measurement conditions and electron state'
     };
   }
 
